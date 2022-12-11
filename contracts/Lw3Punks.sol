@@ -24,5 +24,7 @@ modifier onlyWhenNotPaused {
     _;
 }
 
-constructor {}
+constructor (string memory baseURI){
+    _baseTokenURI = baseURI ;
+}
 }
