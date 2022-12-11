@@ -29,6 +29,7 @@ constructor (string memory baseURI) ERC721("LW3Punks", "LW3P"){
 }
 
 function mint() public payable onlyWhenNotPaused {
-
+ require(tokenIds < _maxTokenIds, "Exceed maximum LW3Punks supply");
+ require(msg.value >= _price, "Ether sent is not correct");
 }
 }
