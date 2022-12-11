@@ -57,4 +57,8 @@ function withdraw() public onlyOwner {
     (bool sent, ) = _owner.call{value: amount} ("");
     require(sent, "Failed to send Ether");
 }
+
+receive() external payable {}
+
+fallback() external payable {}
 }
