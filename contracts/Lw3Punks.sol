@@ -24,7 +24,11 @@ modifier onlyWhenNotPaused {
     _;
 }
 
-constructor (string memory baseURI){
+constructor (string memory baseURI) ERC721("LW3Punks", "LW3P"){
     _baseTokenURI = baseURI ;
+}
+
+function mint() public payable onlyWhenNotPaused {
+
 }
 }
