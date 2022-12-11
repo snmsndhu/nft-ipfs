@@ -34,4 +34,8 @@ function mint() public payable onlyWhenNotPaused {
  tokenIds += 1;
  _safeMint(msg.sender, tokenIds);
 }
+
+function _baseURI() internal view virtual override returns(string memory) {
+  return _baseTokenURI;
+}
 }
