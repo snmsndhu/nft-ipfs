@@ -38,4 +38,23 @@ function mint() public payable onlyWhenNotPaused {
 function _baseURI() internal view virtual override returns(string memory) {
   return _baseTokenURI;
 }
+
+function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+ require(_exists(tokenId),"ERC721Metadata: URI query for nonexistent token");
+
+ string memory baseURI = _baseURI();
+
+ return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), ".json")): "";
+}
+
+function setPaused(bool val) public onlyOwner {
+    _paused = val;
+}
+
+function withdraw() public onlyOwner {
+    address _owner = owner();
+    uint256 amount = address(this).balance;
+    (bool sent, ) = _owner.call{value: amount} ("");
+    require(sent, "Failed to send Ether");
+}
 }
